@@ -46,7 +46,7 @@ def init(X: np.ndarray, K: int,
 
 
 def plot(X: np.ndarray, mixture: GaussianMixture, post: np.ndarray,
-         title: str):
+         title: str, save_path: str = None):
     """Plots the mixture model for 2D data"""
     _, K = post.shape
 
@@ -62,11 +62,11 @@ def plot(X: np.ndarray, mixture: GaussianMixture, post: np.ndarray,
         for j in range(K):
             offset = percent[i, j] * 360
             arc = Arc(point,
-                      r,
-                      r,
-                      0,
-                      theta,
-                      theta + offset,
+                      width=r,
+                      height=r,
+                      angle=0,
+                      theta1=theta,
+                      theta2=theta + offset,
                       edgecolor=color[j])
             ax.add_patch(arc)
             theta += offset
@@ -79,7 +79,11 @@ def plot(X: np.ndarray, mixture: GaussianMixture, post: np.ndarray,
             mu[0], mu[1], sigma)
         ax.text(mu[0], mu[1], legend)
     plt.axis('equal')
-    plt.show()
+    if save_path:
+        plt.savefig(save_path)
+        plt.close()
+    else:
+        plt.show()
 
 
 def rmse(X, Y):
