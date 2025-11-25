@@ -11,7 +11,7 @@ X = np.loadtxt(config.DATA_DIR / "toy_data.txt")
 best_solutions = {}
 lowest_costs = {}
 
-<<<<<<< HEAD
+
 # TODO: Your code here
 seed = 1
 for K in range(1,5):
@@ -107,11 +107,11 @@ print("BIC K2 : " + str(common.bic(toy_X, mixtureEM2, ll2)))
 print("BIC K3 : " + str(common.bic(toy_X, mixtureEM3, ll3)))
 print("BIC K4 : " + str(common.bic(toy_X, mixtureEM4, ll4)))
 
-X_netflix = np.loadtxt("netflix_incomplete.txt")
+X_netflix = np.loadtxt(config.DATA_DIR / "netflix_incomplete.txt")
 test_em_seeds(X_netflix, 1)
 test_em_seeds(X_netflix, 12)
 
-X_gold = np.loadtxt('netflix_complete.txt')
+X_gold = np.loadtxt(config.DATA_DIR / 'netflix_complete.txt')
 mixture4, post4 = common.init(X_netflix,12,1)
 mixture, post, cost4 = em.run(X_netflix,mixture4,post4)
 X_pred = em.fill_matrix(X_netflix,mixture)
@@ -238,7 +238,7 @@ for seed in range(5):
         BIC_k_dict.update({(seed, k): BIC})
     total_cost_dict.update({seed: BIC_total_likehood})
 print(BIC_k_dict)
-=======
+
 # Try K = [1, 2, 3, 4]
 for K in [1, 2, 3, 4]:
     best_cost = float('inf')
@@ -264,7 +264,7 @@ for K in [1, 2, 3, 4]:
     lowest_costs[K] = best_cost
     
     # Plot and save the best solution
-    common.plot(X, best_mixture, best_post, f"K-Means (K={K})", save_path=f"{IMAGES_OUTPUT_DIR}\kmeans_k{K}.png")
+    common.plot(X, best_mixture, best_post, f"K-Means (K={K})", save_path=f"{IMAGES_OUTPUT_DIR}/kmeans_k{K}.png")
     
     print(f"K={K}: Lowest cost = {best_cost:.4f}")
 
@@ -272,4 +272,4 @@ for K in [1, 2, 3, 4]:
 print("\nSummary of lowest costs:")
 for K in [1, 2, 3, 4]:
     print(f"Cost|K={K} = {lowest_costs[K]:.4f}")
->>>>>>> dc45b499eeadc2ea0f74284f083d0172410123fe
+
