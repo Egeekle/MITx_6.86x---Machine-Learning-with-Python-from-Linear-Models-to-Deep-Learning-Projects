@@ -61,6 +61,14 @@ def tabular_q_learning(q_func, current_state_1, current_state_2, action_index,
         None
     """
     # TODO Your code here
+    if terminal:
+        target = reward
+    else:
+        target = reward + GAMMA * np.max(q_func[next_state_1, next_state_2, :, :])
+    q_func[current_state_1, current_state_2, action_index, object_index] += ALPHA * (
+        target - q_func[current_state_1, current_state_2, action_index, object_index]
+    )
+    return None
     q_func[current_state_1, current_state_2, action_index,
            object_index] = 0  # TODO Your update here
 
