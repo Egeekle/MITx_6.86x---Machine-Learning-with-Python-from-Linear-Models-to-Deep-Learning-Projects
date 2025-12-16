@@ -1,6 +1,8 @@
 """Tabular QL agent"""
 import numpy as np
 import matplotlib.pyplot as plt
+!pip install tqdm
+%restart_python or dbutils.library.restartPython()
 from tqdm import tqdm
 import framework
 import utils
